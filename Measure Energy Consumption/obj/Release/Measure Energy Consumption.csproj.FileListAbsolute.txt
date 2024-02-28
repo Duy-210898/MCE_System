@@ -1,0 +1,64 @@
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Measure Energy Consumption.exe.config
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Measure Energy Consumption.exe
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Measure Energy Consumption.pdb
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Common.Logging.Core.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Common.Logging.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.BonusSkins.v23.1.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Data.Desktop.v23.1.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Data.v23.1.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Drawing.v23.1.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Printing.v23.1.Core.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Sparkline.v23.1.Core.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Utils.v23.1.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.XtraEditors.v23.1.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\EasyModbus.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\EPPlus.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\EPPlus.Interfaces.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\EPPlus.System.Drawing.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Makaretu.Dns.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Microsoft.IO.RecyclableMemoryStream.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\SimpleBase.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\System.Buffers.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\System.ComponentModel.Annotations.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\System.Memory.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\System.Net.IPNetwork.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\System.Numerics.Vectors.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Pdf.v23.1.Core.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Pdf.v23.1.Drawing.dll
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Common.Logging.pdb
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Common.Logging.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Common.Logging.Core.pdb
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Common.Logging.Core.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Data.Desktop.v23.1.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Data.v23.1.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Utils.v23.1.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Sparkline.v23.1.Core.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.XtraEditors.v23.1.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Printing.v23.1.Core.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Drawing.v23.1.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\EasyModbus.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\EPPlus.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Makaretu.Dns.pdb
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Makaretu.Dns.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Microsoft.IO.RecyclableMemoryStream.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\SimpleBase.pdb
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\System.Buffers.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\System.Memory.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\System.Numerics.Vectors.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\System.Runtime.CompilerServices.Unsafe.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Pdf.v23.1.Core.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\DevExpress.Pdf.v23.1.Drawing.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\obj\Release\Measure Energy Consumption.csproj.AssemblyReference.cache
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\obj\Release\Measure_Energy_Consumption.frmMain.resources
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\obj\Release\Measure_Energy_Consumption.Properties.Resources.resources
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\obj\Release\Measure Energy Consumption.csproj.GenerateResource.cache
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\obj\Release\Measure Energy Consumption.csproj.CoreCompileInputs.cache
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\obj\Release\Measure Energy Consumption.csproj.CopyComplete
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\obj\Release\Measure Energy Consumption.exe
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\obj\Release\Measure Energy Consumption.pdb
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Measure Energy Consumption.exe.manifest
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\bin\Release\Measure Energy Consumption.application
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\obj\Release\Measure Energy Consumption.TrustInfo.xml
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\obj\Release\Measure Energy Consumption.exe.manifest
+D:\MCE\Measure Energy Consumption\Measure Energy Consumption\obj\Release\Measure Energy Consumption.application
