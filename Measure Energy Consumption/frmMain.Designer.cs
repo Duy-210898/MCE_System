@@ -817,10 +817,10 @@
             this.panel23.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel23.Controls.Add(this.dgvDataIp1);
             this.panel23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel23.Location = new System.Drawing.Point(0, 31);
+            this.panel23.Location = new System.Drawing.Point(0, 36);
             this.panel23.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(446, 653);
+            this.panel23.Size = new System.Drawing.Size(446, 648);
             this.panel23.TabIndex = 4;
             // 
             // dgvDataIp1
@@ -831,7 +831,7 @@
             this.dgvDataIp1.Location = new System.Drawing.Point(0, 0);
             this.dgvDataIp1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvDataIp1.Name = "dgvDataIp1";
-            this.dgvDataIp1.Size = new System.Drawing.Size(442, 649);
+            this.dgvDataIp1.Size = new System.Drawing.Size(442, 644);
             this.dgvDataIp1.TabIndex = 3;
             // 
             // panel25
@@ -842,7 +842,7 @@
             this.panel25.Location = new System.Drawing.Point(0, 0);
             this.panel25.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(446, 31);
+            this.panel25.Size = new System.Drawing.Size(446, 36);
             this.panel25.TabIndex = 3;
             // 
             // lblDataIp1
@@ -853,7 +853,7 @@
             this.lblDataIp1.ForeColor = System.Drawing.Color.Black;
             this.lblDataIp1.Location = new System.Drawing.Point(0, 0);
             this.lblDataIp1.Name = "lblDataIp1";
-            this.lblDataIp1.Size = new System.Drawing.Size(442, 27);
+            this.lblDataIp1.Size = new System.Drawing.Size(442, 32);
             this.lblDataIp1.TabIndex = 2;
             this.lblDataIp1.Text = "Cabinet 1";
             this.lblDataIp1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -876,10 +876,10 @@
             this.panel27.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel27.Controls.Add(this.dgvDataIp2);
             this.panel27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel27.Location = new System.Drawing.Point(0, 31);
+            this.panel27.Location = new System.Drawing.Point(0, 36);
             this.panel27.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel27.Name = "panel27";
-            this.panel27.Size = new System.Drawing.Size(459, 653);
+            this.panel27.Size = new System.Drawing.Size(459, 648);
             this.panel27.TabIndex = 5;
             // 
             // dgvDataIp2
@@ -889,7 +889,7 @@
             this.dgvDataIp2.Location = new System.Drawing.Point(0, 0);
             this.dgvDataIp2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgvDataIp2.Name = "dgvDataIp2";
-            this.dgvDataIp2.Size = new System.Drawing.Size(455, 649);
+            this.dgvDataIp2.Size = new System.Drawing.Size(455, 644);
             this.dgvDataIp2.TabIndex = 0;
             // 
             // panel26
@@ -900,7 +900,7 @@
             this.panel26.Location = new System.Drawing.Point(0, 0);
             this.panel26.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(459, 31);
+            this.panel26.Size = new System.Drawing.Size(459, 36);
             this.panel26.TabIndex = 4;
             // 
             // lblDataIp2
@@ -911,7 +911,7 @@
             this.lblDataIp2.ForeColor = System.Drawing.Color.Black;
             this.lblDataIp2.Location = new System.Drawing.Point(0, 0);
             this.lblDataIp2.Name = "lblDataIp2";
-            this.lblDataIp2.Size = new System.Drawing.Size(455, 27);
+            this.lblDataIp2.Size = new System.Drawing.Size(455, 32);
             this.lblDataIp2.TabIndex = 3;
             this.lblDataIp2.Text = "Cabinet 2";
             this.lblDataIp2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -931,6 +931,7 @@
             this.IconOptions.Image = global::Measure_Energy_Consumption.Properties.Resources.electric_power_meter_energy_electricity_counter_vector_48294335_removebg_preview;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Measure Energy Consumption";
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);

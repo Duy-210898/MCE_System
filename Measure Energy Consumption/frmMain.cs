@@ -24,6 +24,8 @@ namespace Measure_Energy_Consumption
         private DataTable cabinet1DataTable;
         private DataTable cabinet2DataTable;
 
+        private NotifyIcon trayIcon;
+
         public frmMain()
         {
             InitializeComponent();
@@ -45,8 +47,60 @@ namespace Measure_Energy_Consumption
 
             numTimeRecordIp1.Value = 1;
             numTimeRecordIp2.Value = 1;
+
+            // Khởi tạo và cấu hình NotifyIcon
+            InitializeNotifyIcon();
         }
 
+        private void InitializeNotifyIcon()
+        {
+            trayIcon = new NotifyIcon();
+            trayIcon.Icon = SystemIcons.Application;
+            trayIcon.Text = "Measure Energy Consumption";
+            trayIcon.Icon = Icon.FromHandle(Properties.Resources.electric_power_meter_energy_electricity_counter_vector_48294335_removebg_preview.GetHicon());
+            trayIcon.Visible = true;
+
+            // Tạo menu context cho NotifyIcon
+            ContextMenu contextMenu = new ContextMenu();
+            contextMenu.MenuItems.Add("Show Application", (sender, e) =>
+            {
+                Show();
+                WindowState = FormWindowState.Normal;
+            });
+            contextMenu.MenuItems.Add("Exit", (sender, e) =>
+            {
+                Application.Exit();
+            });
+            trayIcon.ContextMenu = contextMenu;
+
+            trayIcon.DoubleClick += trayIcon_DoubleClick;
+        }
+
+        // Xử lý sự kiện double-click trên NotifyIcon để hiện lại cửa sổ chính
+        private void trayIcon_DoubleClick(object sender, EventArgs e)
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
+        }
+
+        /// <summary>
+        /// Override phương thức OnFormClosing để chuyển ứng dụng vào background khi bị đóng
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true; 
+                Hide(); 
+            }
+        }
+
+        /// <summary>
+        /// Khởi tạo DataTables
+        /// </summary>
         private void InitializeDataTables()
         {
             machine1DataTable = new DataTable();
