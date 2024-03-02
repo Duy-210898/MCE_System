@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.panel13 = new System.Windows.Forms.Panel();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel24 = new System.Windows.Forms.Panel();
             this.dgvHourlyIp1 = new System.Windows.Forms.DataGridView();
@@ -54,6 +56,9 @@
             this.dtpStartTimeIp1 = new System.Windows.Forms.DateTimePicker();
             this.btnCalculatorEnergy1 = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.dgvDataIp2 = new System.Windows.Forms.DataGridView();
+            this.lblDataIp2 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel28 = new System.Windows.Forms.Panel();
             this.dgvHourlyIp2 = new System.Windows.Forms.DataGridView();
@@ -77,22 +82,13 @@
             this.panel22 = new System.Windows.Forms.Panel();
             this.dtpStartTimeIp2 = new System.Windows.Forms.DateTimePicker();
             this.btnCalculatorEnergy2 = new DevExpress.XtraEditors.SimpleButton();
-            this.panel21 = new System.Windows.Forms.Panel();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel23 = new System.Windows.Forms.Panel();
             this.dgvDataIp1 = new System.Windows.Forms.DataGridView();
-            this.panel25 = new System.Windows.Forms.Panel();
             this.lblDataIp1 = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel27 = new System.Windows.Forms.Panel();
-            this.dgvDataIp2 = new System.Windows.Forms.DataGridView();
-            this.panel26 = new System.Windows.Forms.Panel();
-            this.lblDataIp2 = new System.Windows.Forms.Label();
+            this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel24.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHourlyIp1)).BeginInit();
@@ -107,6 +103,8 @@
             this.panel10.SuspendLayout();
             this.panel20.SuspendLayout();
             this.xtraTabPage2.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDataIp2)).BeginInit();
             this.panel11.SuspendLayout();
             this.panel28.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHourlyIp2)).BeginInit();
@@ -120,21 +118,17 @@
             this.panel18.SuspendLayout();
             this.panel19.SuspendLayout();
             this.panel22.SuspendLayout();
-            this.panel21.SuspendLayout();
-            this.panel13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel23.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDataIp1)).BeginInit();
-            this.panel25.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel27.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDataIp2)).BeginInit();
-            this.panel26.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // panel13
+            // 
+            this.panel13.Controls.Add(this.xtraTabControl1);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel13.Location = new System.Drawing.Point(0, 0);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(1278, 688);
+            this.panel13.TabIndex = 5;
             // 
             // xtraTabControl1
             // 
@@ -159,8 +153,8 @@
             this.xtraTabControl1.MultiLine = DevExpress.Utils.DefaultBoolean.True;
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(358, 684);
-            this.xtraTabControl1.TabIndex = 41;
+            this.xtraTabControl1.Size = new System.Drawing.Size(1278, 688);
+            this.xtraTabControl1.TabIndex = 44;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
             this.xtraTabPage2});
@@ -171,21 +165,33 @@
             this.xtraTabPage1.Appearance.Header.Options.UseFont = true;
             this.xtraTabPage1.Appearance.PageClient.BackColor = System.Drawing.Color.SkyBlue;
             this.xtraTabPage1.Appearance.PageClient.Options.UseBackColor = true;
+            this.xtraTabPage1.Controls.Add(this.panel6);
             this.xtraTabPage1.Controls.Add(this.panel1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(356, 652);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1276, 656);
             this.xtraTabPage1.TabPageWidth = 80;
             this.xtraTabPage1.Text = "Cabinet 1";
+            // 
+            // panel6
+            // 
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel6.Controls.Add(this.dgvDataIp1);
+            this.panel6.Controls.Add(this.lblDataIp1);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(377, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(899, 656);
+            this.panel6.TabIndex = 10;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel1.Controls.Add(this.panel24);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(356, 652);
+            this.panel1.Size = new System.Drawing.Size(377, 656);
             this.panel1.TabIndex = 9;
             // 
             // panel24
@@ -195,7 +201,7 @@
             this.panel24.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel24.Location = new System.Drawing.Point(0, 353);
             this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(356, 299);
+            this.panel24.Size = new System.Drawing.Size(377, 303);
             this.panel24.TabIndex = 1;
             // 
             // dgvHourlyIp1
@@ -206,7 +212,7 @@
             this.dgvHourlyIp1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvHourlyIp1.Location = new System.Drawing.Point(0, 0);
             this.dgvHourlyIp1.Name = "dgvHourlyIp1";
-            this.dgvHourlyIp1.Size = new System.Drawing.Size(352, 295);
+            this.dgvHourlyIp1.Size = new System.Drawing.Size(373, 299);
             this.dgvHourlyIp1.TabIndex = 0;
             // 
             // panel2
@@ -216,7 +222,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(356, 353);
+            this.panel2.Size = new System.Drawing.Size(377, 353);
             this.panel2.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -246,7 +252,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(352, 349);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(373, 349);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
             // panel3
@@ -256,7 +262,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(124, 30);
+            this.panel3.Size = new System.Drawing.Size(132, 30);
             this.panel3.TabIndex = 3;
             // 
             // cbxListIp1
@@ -268,7 +274,7 @@
             this.cbxListIp1.Location = new System.Drawing.Point(0, 0);
             this.cbxListIp1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.cbxListIp1.Name = "cbxListIp1";
-            this.cbxListIp1.Size = new System.Drawing.Size(120, 26);
+            this.cbxListIp1.Size = new System.Drawing.Size(128, 26);
             this.cbxListIp1.TabIndex = 28;
             this.cbxListIp1.SelectedIndexChanged += new System.EventHandler(this.cbxListIp1_SelectedIndexChanged);
             this.cbxListIp1.Click += new System.EventHandler(this.cbxListIp1_Click);
@@ -278,7 +284,7 @@
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.dtpEndTimeIp1);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(6, 158);
+            this.panel4.Location = new System.Drawing.Point(14, 158);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(121, 28);
             this.panel4.TabIndex = 3;
@@ -301,9 +307,9 @@
             this.panel7.Controls.Add(this.numTimeRecordIp1);
             this.panel7.Controls.Add(this.label3);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(133, 39);
+            this.panel7.Location = new System.Drawing.Point(141, 39);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(216, 33);
+            this.panel7.Size = new System.Drawing.Size(229, 33);
             this.panel7.TabIndex = 3;
             // 
             // numTimeRecordIp1
@@ -327,7 +333,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(58, 6);
+            this.label3.Location = new System.Drawing.Point(59, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 21);
             this.label3.TabIndex = 22;
@@ -339,7 +345,7 @@
             this.btnDisconnectIp1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDisconnectIp1.Appearance.Options.UseFont = true;
             this.btnDisconnectIp1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnDisconnectIp1.Location = new System.Drawing.Point(6, 80);
+            this.btnDisconnectIp1.Location = new System.Drawing.Point(14, 80);
             this.btnDisconnectIp1.LookAndFeel.SkinMaskColor = System.Drawing.Color.LightSteelBlue;
             this.btnDisconnectIp1.LookAndFeel.SkinName = "Dark Side";
             this.btnDisconnectIp1.LookAndFeel.UseDefaultLookAndFeel = false;
@@ -355,7 +361,7 @@
             this.btnConnectIp1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConnectIp1.Appearance.Options.UseFont = true;
             this.btnConnectIp1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnConnectIp1.Location = new System.Drawing.Point(133, 80);
+            this.btnConnectIp1.Location = new System.Drawing.Point(141, 80);
             this.btnConnectIp1.LookAndFeel.SkinMaskColor = System.Drawing.Color.Orange;
             this.btnConnectIp1.LookAndFeel.SkinName = "Dark Side";
             this.btnConnectIp1.LookAndFeel.UseDefaultLookAndFeel = false;
@@ -373,7 +379,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(3, 39);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(124, 33);
+            this.panel8.Size = new System.Drawing.Size(132, 33);
             this.panel8.TabIndex = 29;
             // 
             // label4
@@ -382,7 +388,7 @@
             this.label4.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(0, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 29);
+            this.label4.Size = new System.Drawing.Size(128, 29);
             this.label4.TabIndex = 28;
             this.label4.Text = "Thời gian ghi:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -392,9 +398,9 @@
             this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel9.Controls.Add(this.lblStatusIp1);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(133, 3);
+            this.panel9.Location = new System.Drawing.Point(141, 3);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(216, 30);
+            this.panel9.Size = new System.Drawing.Size(229, 30);
             this.panel9.TabIndex = 31;
             // 
             // lblStatusIp1
@@ -403,7 +409,7 @@
             this.lblStatusIp1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatusIp1.Location = new System.Drawing.Point(0, 0);
             this.lblStatusIp1.Name = "lblStatusIp1";
-            this.lblStatusIp1.Size = new System.Drawing.Size(212, 26);
+            this.lblStatusIp1.Size = new System.Drawing.Size(225, 26);
             this.lblStatusIp1.TabIndex = 26;
             this.lblStatusIp1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -412,9 +418,9 @@
             this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel10.Controls.Add(this.lblTotalEnergyIp1);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(133, 192);
+            this.panel10.Location = new System.Drawing.Point(141, 192);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(216, 40);
+            this.panel10.Size = new System.Drawing.Size(229, 40);
             this.panel10.TabIndex = 35;
             // 
             // lblTotalEnergyIp1
@@ -424,7 +430,7 @@
             this.lblTotalEnergyIp1.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalEnergyIp1.Location = new System.Drawing.Point(0, 0);
             this.lblTotalEnergyIp1.Name = "lblTotalEnergyIp1";
-            this.lblTotalEnergyIp1.Size = new System.Drawing.Size(212, 36);
+            this.lblTotalEnergyIp1.Size = new System.Drawing.Size(225, 36);
             this.lblTotalEnergyIp1.TabIndex = 17;
             this.lblTotalEnergyIp1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -433,7 +439,7 @@
             this.panel20.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel20.Controls.Add(this.dtpStartTimeIp1);
             this.panel20.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel20.Location = new System.Drawing.Point(6, 124);
+            this.panel20.Location = new System.Drawing.Point(14, 124);
             this.panel20.Name = "panel20";
             this.panel20.Size = new System.Drawing.Size(121, 28);
             this.panel20.TabIndex = 39;
@@ -455,7 +461,7 @@
             this.btnCalculatorEnergy1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalculatorEnergy1.Appearance.Options.UseFont = true;
             this.btnCalculatorEnergy1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCalculatorEnergy1.Location = new System.Drawing.Point(6, 194);
+            this.btnCalculatorEnergy1.Location = new System.Drawing.Point(14, 194);
             this.btnCalculatorEnergy1.LookAndFeel.SkinMaskColor = System.Drawing.Color.Wheat;
             this.btnCalculatorEnergy1.LookAndFeel.SkinName = "Dark Side";
             this.btnCalculatorEnergy1.LookAndFeel.UseDefaultLookAndFeel = false;
@@ -468,21 +474,57 @@
             // 
             // xtraTabPage2
             // 
+            this.xtraTabPage2.Controls.Add(this.panel5);
             this.xtraTabPage2.Controls.Add(this.panel11);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(356, 652);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1276, 656);
             this.xtraTabPage2.TabPageWidth = 80;
             this.xtraTabPage2.Text = "Cabinet 2";
+            // 
+            // panel5
+            // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.Controls.Add(this.dgvDataIp2);
+            this.panel5.Controls.Add(this.lblDataIp2);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(377, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(899, 656);
+            this.panel5.TabIndex = 9;
+            // 
+            // dgvDataIp2
+            // 
+            this.dgvDataIp2.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dgvDataIp2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvDataIp2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDataIp2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDataIp2.Location = new System.Drawing.Point(0, 38);
+            this.dgvDataIp2.Name = "dgvDataIp2";
+            this.dgvDataIp2.Size = new System.Drawing.Size(895, 614);
+            this.dgvDataIp2.TabIndex = 1;
+            // 
+            // lblDataIp2
+            // 
+            this.lblDataIp2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblDataIp2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblDataIp2.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataIp2.Location = new System.Drawing.Point(0, 0);
+            this.lblDataIp2.Name = "lblDataIp2";
+            this.lblDataIp2.Size = new System.Drawing.Size(895, 38);
+            this.lblDataIp2.TabIndex = 0;
+            this.lblDataIp2.Text = "Cabinet 2";
+            this.lblDataIp2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDataIp2.TextChanged += new System.EventHandler(this.lblDataIp2_TextChanged);
             // 
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.Color.LightSteelBlue;
             this.panel11.Controls.Add(this.panel28);
             this.panel11.Controls.Add(this.panel12);
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(356, 652);
+            this.panel11.Size = new System.Drawing.Size(377, 656);
             this.panel11.TabIndex = 8;
             // 
             // panel28
@@ -492,7 +534,7 @@
             this.panel28.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel28.Location = new System.Drawing.Point(0, 353);
             this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(356, 299);
+            this.panel28.Size = new System.Drawing.Size(377, 303);
             this.panel28.TabIndex = 2;
             // 
             // dgvHourlyIp2
@@ -503,7 +545,7 @@
             this.dgvHourlyIp2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvHourlyIp2.Location = new System.Drawing.Point(0, 0);
             this.dgvHourlyIp2.Name = "dgvHourlyIp2";
-            this.dgvHourlyIp2.Size = new System.Drawing.Size(352, 295);
+            this.dgvHourlyIp2.Size = new System.Drawing.Size(373, 299);
             this.dgvHourlyIp2.TabIndex = 0;
             // 
             // panel12
@@ -513,7 +555,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel12.Location = new System.Drawing.Point(0, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(356, 353);
+            this.panel12.Size = new System.Drawing.Size(377, 353);
             this.panel12.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -543,7 +585,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 46F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(352, 349);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(373, 349);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // panel14
@@ -553,7 +595,7 @@
             this.panel14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel14.Location = new System.Drawing.Point(3, 3);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(124, 30);
+            this.panel14.Size = new System.Drawing.Size(132, 30);
             this.panel14.TabIndex = 3;
             // 
             // cbxListIp2
@@ -565,8 +607,9 @@
             this.cbxListIp2.Location = new System.Drawing.Point(0, 0);
             this.cbxListIp2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.cbxListIp2.Name = "cbxListIp2";
-            this.cbxListIp2.Size = new System.Drawing.Size(120, 26);
+            this.cbxListIp2.Size = new System.Drawing.Size(128, 26);
             this.cbxListIp2.TabIndex = 28;
+            this.cbxListIp2.SelectedIndexChanged += new System.EventHandler(this.cbxListIp1_SelectedIndexChanged);
             this.cbxListIp2.Click += new System.EventHandler(this.cbxListIp2_Click);
             // 
             // panel15
@@ -574,7 +617,7 @@
             this.panel15.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel15.Controls.Add(this.dtpEndTimeIp2);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel15.Location = new System.Drawing.Point(6, 158);
+            this.panel15.Location = new System.Drawing.Point(14, 158);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(121, 28);
             this.panel15.TabIndex = 3;
@@ -597,9 +640,9 @@
             this.panel16.Controls.Add(this.numTimeRecordIp2);
             this.panel16.Controls.Add(this.label1);
             this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel16.Location = new System.Drawing.Point(133, 39);
+            this.panel16.Location = new System.Drawing.Point(141, 39);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(216, 33);
+            this.panel16.Size = new System.Drawing.Size(229, 33);
             this.panel16.TabIndex = 3;
             // 
             // numTimeRecordIp2
@@ -635,7 +678,7 @@
             this.btnDisconnectIp2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDisconnectIp2.Appearance.Options.UseFont = true;
             this.btnDisconnectIp2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnDisconnectIp2.Location = new System.Drawing.Point(6, 80);
+            this.btnDisconnectIp2.Location = new System.Drawing.Point(14, 80);
             this.btnDisconnectIp2.LookAndFeel.SkinMaskColor = System.Drawing.Color.LightSteelBlue;
             this.btnDisconnectIp2.LookAndFeel.SkinName = "Dark Side";
             this.btnDisconnectIp2.LookAndFeel.UseDefaultLookAndFeel = false;
@@ -651,7 +694,7 @@
             this.btnConnectIp2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConnectIp2.Appearance.Options.UseFont = true;
             this.btnConnectIp2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnConnectIp2.Location = new System.Drawing.Point(133, 80);
+            this.btnConnectIp2.Location = new System.Drawing.Point(141, 80);
             this.btnConnectIp2.LookAndFeel.SkinMaskColor = System.Drawing.Color.Orange;
             this.btnConnectIp2.LookAndFeel.SkinName = "Dark Side";
             this.btnConnectIp2.LookAndFeel.UseDefaultLookAndFeel = false;
@@ -669,7 +712,7 @@
             this.panel17.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel17.Location = new System.Drawing.Point(3, 39);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(124, 33);
+            this.panel17.Size = new System.Drawing.Size(132, 33);
             this.panel17.TabIndex = 29;
             // 
             // label2
@@ -678,7 +721,7 @@
             this.label2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 29);
+            this.label2.Size = new System.Drawing.Size(128, 29);
             this.label2.TabIndex = 28;
             this.label2.Text = "Thời gian ghi:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -688,9 +731,9 @@
             this.panel18.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel18.Controls.Add(this.lblStatusIp2);
             this.panel18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel18.Location = new System.Drawing.Point(133, 3);
+            this.panel18.Location = new System.Drawing.Point(141, 3);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(216, 30);
+            this.panel18.Size = new System.Drawing.Size(229, 30);
             this.panel18.TabIndex = 31;
             // 
             // lblStatusIp2
@@ -699,18 +742,19 @@
             this.lblStatusIp2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatusIp2.Location = new System.Drawing.Point(0, 0);
             this.lblStatusIp2.Name = "lblStatusIp2";
-            this.lblStatusIp2.Size = new System.Drawing.Size(212, 26);
+            this.lblStatusIp2.Size = new System.Drawing.Size(225, 26);
             this.lblStatusIp2.TabIndex = 26;
             this.lblStatusIp2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblStatusIp2.TextChanged += new System.EventHandler(this.lblStatusIp2_TextChanged);
             // 
             // panel19
             // 
             this.panel19.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel19.Controls.Add(this.lblTotalEnergyIp2);
             this.panel19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel19.Location = new System.Drawing.Point(133, 192);
+            this.panel19.Location = new System.Drawing.Point(141, 192);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(216, 40);
+            this.panel19.Size = new System.Drawing.Size(229, 40);
             this.panel19.TabIndex = 35;
             // 
             // lblTotalEnergyIp2
@@ -719,7 +763,7 @@
             this.lblTotalEnergyIp2.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalEnergyIp2.Location = new System.Drawing.Point(0, 0);
             this.lblTotalEnergyIp2.Name = "lblTotalEnergyIp2";
-            this.lblTotalEnergyIp2.Size = new System.Drawing.Size(212, 36);
+            this.lblTotalEnergyIp2.Size = new System.Drawing.Size(225, 36);
             this.lblTotalEnergyIp2.TabIndex = 17;
             this.lblTotalEnergyIp2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -728,7 +772,7 @@
             this.panel22.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel22.Controls.Add(this.dtpStartTimeIp2);
             this.panel22.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel22.Location = new System.Drawing.Point(6, 124);
+            this.panel22.Location = new System.Drawing.Point(14, 124);
             this.panel22.Name = "panel22";
             this.panel22.Size = new System.Drawing.Size(121, 28);
             this.panel22.TabIndex = 39;
@@ -750,7 +794,7 @@
             this.btnCalculatorEnergy2.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalculatorEnergy2.Appearance.Options.UseFont = true;
             this.btnCalculatorEnergy2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnCalculatorEnergy2.Location = new System.Drawing.Point(6, 194);
+            this.btnCalculatorEnergy2.Location = new System.Drawing.Point(14, 194);
             this.btnCalculatorEnergy2.LookAndFeel.SkinMaskColor = System.Drawing.Color.Wheat;
             this.btnCalculatorEnergy2.LookAndFeel.SkinName = "Dark Side";
             this.btnCalculatorEnergy2.LookAndFeel.UseDefaultLookAndFeel = false;
@@ -761,161 +805,29 @@
             this.btnCalculatorEnergy2.Text = "Tính điện";
             this.btnCalculatorEnergy2.Click += new System.EventHandler(this.btnCalculatorEnergy_Click);
             // 
-            // panel21
-            // 
-            this.panel21.BackColor = System.Drawing.Color.Transparent;
-            this.panel21.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel21.Controls.Add(this.xtraTabControl1);
-            this.panel21.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel21.Location = new System.Drawing.Point(0, 0);
-            this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(362, 688);
-            this.panel21.TabIndex = 4;
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.splitContainer2);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel13.Location = new System.Drawing.Point(362, 0);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(916, 688);
-            this.panel13.TabIndex = 5;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.panel5);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.panel6);
-            this.splitContainer2.Size = new System.Drawing.Size(916, 688);
-            this.splitContainer2.SplitterDistance = 450;
-            this.splitContainer2.SplitterWidth = 3;
-            this.splitContainer2.TabIndex = 2;
-            // 
-            // panel5
-            // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel5.Controls.Add(this.panel23);
-            this.panel5.Controls.Add(this.panel25);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(450, 688);
-            this.panel5.TabIndex = 0;
-            // 
-            // panel23
-            // 
-            this.panel23.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel23.Controls.Add(this.dgvDataIp1);
-            this.panel23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel23.Location = new System.Drawing.Point(0, 36);
-            this.panel23.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(446, 648);
-            this.panel23.TabIndex = 4;
-            // 
             // dgvDataIp1
             // 
+            this.dgvDataIp1.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.dgvDataIp1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvDataIp1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDataIp1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDataIp1.Location = new System.Drawing.Point(0, 0);
-            this.dgvDataIp1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvDataIp1.Location = new System.Drawing.Point(0, 38);
             this.dgvDataIp1.Name = "dgvDataIp1";
-            this.dgvDataIp1.Size = new System.Drawing.Size(442, 644);
-            this.dgvDataIp1.TabIndex = 3;
-            // 
-            // panel25
-            // 
-            this.panel25.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel25.Controls.Add(this.lblDataIp1);
-            this.panel25.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel25.Location = new System.Drawing.Point(0, 0);
-            this.panel25.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(446, 36);
-            this.panel25.TabIndex = 3;
+            this.dgvDataIp1.Size = new System.Drawing.Size(895, 614);
+            this.dgvDataIp1.TabIndex = 1;
             // 
             // lblDataIp1
             // 
             this.lblDataIp1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblDataIp1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDataIp1.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataIp1.ForeColor = System.Drawing.Color.Black;
+            this.lblDataIp1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblDataIp1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDataIp1.Location = new System.Drawing.Point(0, 0);
             this.lblDataIp1.Name = "lblDataIp1";
-            this.lblDataIp1.Size = new System.Drawing.Size(442, 32);
-            this.lblDataIp1.TabIndex = 2;
+            this.lblDataIp1.Size = new System.Drawing.Size(895, 38);
+            this.lblDataIp1.TabIndex = 0;
             this.lblDataIp1.Text = "Cabinet 1";
             this.lblDataIp1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblDataIp1.TextChanged += new System.EventHandler(this.lblDataIp1_TextChanged);
-            // 
-            // panel6
-            // 
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel6.Controls.Add(this.panel27);
-            this.panel6.Controls.Add(this.panel26);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(463, 688);
-            this.panel6.TabIndex = 0;
-            // 
-            // panel27
-            // 
-            this.panel27.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel27.Controls.Add(this.dgvDataIp2);
-            this.panel27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel27.Location = new System.Drawing.Point(0, 36);
-            this.panel27.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel27.Name = "panel27";
-            this.panel27.Size = new System.Drawing.Size(459, 648);
-            this.panel27.TabIndex = 5;
-            // 
-            // dgvDataIp2
-            // 
-            this.dgvDataIp2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDataIp2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDataIp2.Location = new System.Drawing.Point(0, 0);
-            this.dgvDataIp2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dgvDataIp2.Name = "dgvDataIp2";
-            this.dgvDataIp2.Size = new System.Drawing.Size(455, 644);
-            this.dgvDataIp2.TabIndex = 0;
-            // 
-            // panel26
-            // 
-            this.panel26.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel26.Controls.Add(this.lblDataIp2);
-            this.panel26.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel26.Location = new System.Drawing.Point(0, 0);
-            this.panel26.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(459, 36);
-            this.panel26.TabIndex = 4;
-            // 
-            // lblDataIp2
-            // 
-            this.lblDataIp2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblDataIp2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDataIp2.Font = new System.Drawing.Font("Tahoma", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataIp2.ForeColor = System.Drawing.Color.Black;
-            this.lblDataIp2.Location = new System.Drawing.Point(0, 0);
-            this.lblDataIp2.Name = "lblDataIp2";
-            this.lblDataIp2.Size = new System.Drawing.Size(455, 32);
-            this.lblDataIp2.TabIndex = 3;
-            this.lblDataIp2.Text = "Cabinet 2";
-            this.lblDataIp2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblDataIp2.TextChanged += new System.EventHandler(this.lblDataIp2_TextChanged);
             // 
             // frmMain
             // 
@@ -926,16 +838,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1278, 688);
             this.Controls.Add(this.panel13);
-            this.Controls.Add(this.panel21);
             this.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IconOptions.Image = global::Measure_Energy_Consumption.Properties.Resources.electric_power_meter_energy_electricity_counter_vector_48294335_removebg_preview;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Measure Energy Consumption";
+            this.panel13.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel24.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHourlyIp1)).EndInit();
@@ -950,6 +863,8 @@
             this.panel10.ResumeLayout(false);
             this.panel20.ResumeLayout(false);
             this.xtraTabPage2.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDataIp2)).EndInit();
             this.panel11.ResumeLayout(false);
             this.panel28.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHourlyIp2)).EndInit();
@@ -963,43 +878,46 @@
             this.panel18.ResumeLayout(false);
             this.panel19.ResumeLayout(false);
             this.panel22.ResumeLayout(false);
-            this.panel21.ResumeLayout(false);
-            this.panel13.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel23.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDataIp1)).EndInit();
-            this.panel25.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel27.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDataIp2)).EndInit();
-            this.panel26.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.Panel panel13;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.Panel panel28;
+        private System.Windows.Forms.DataGridView dgvHourlyIp2;
+        private System.Windows.Forms.Panel panel12;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.ComboBox cbxListIp2;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.DateTimePicker dtpEndTimeIp2;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.NumericUpDown numTimeRecordIp2;
+        private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.SimpleButton btnDisconnectIp2;
+        private DevExpress.XtraEditors.SimpleButton btnConnectIp2;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.Label lblStatusIp2;
+        private System.Windows.Forms.Panel panel19;
+        private System.Windows.Forms.Label lblTotalEnergyIp2;
+        private System.Windows.Forms.Panel panel22;
+        private System.Windows.Forms.DateTimePicker dtpStartTimeIp2;
+        private DevExpress.XtraEditors.SimpleButton btnCalculatorEnergy2;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel23;
-        private System.Windows.Forms.DataGridView dgvDataIp1;
-        private System.Windows.Forms.Panel panel25;
-        private System.Windows.Forms.Label lblDataIp1;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel27;
         private System.Windows.Forms.DataGridView dgvDataIp2;
-        private System.Windows.Forms.Panel panel26;
         private System.Windows.Forms.Label lblDataIp2;
+        private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel24;
+        private System.Windows.Forms.DataGridView dgvHourlyIp1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel3;
@@ -1020,30 +938,8 @@
         private System.Windows.Forms.Panel panel20;
         private System.Windows.Forms.DateTimePicker dtpStartTimeIp1;
         private DevExpress.XtraEditors.SimpleButton btnCalculatorEnergy1;
-        private System.Windows.Forms.Panel panel24;
-        private System.Windows.Forms.DataGridView dgvHourlyIp1;
-        private System.Windows.Forms.Panel panel28;
-        private System.Windows.Forms.DataGridView dgvHourlyIp2;
-        private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.ComboBox cbxListIp2;
-        private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.DateTimePicker dtpEndTimeIp2;
-        private System.Windows.Forms.Panel panel16;
-        private System.Windows.Forms.NumericUpDown numTimeRecordIp2;
-        private System.Windows.Forms.Label label1;
-        private DevExpress.XtraEditors.SimpleButton btnDisconnectIp2;
-        private DevExpress.XtraEditors.SimpleButton btnConnectIp2;
-        private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel18;
-        private System.Windows.Forms.Label lblStatusIp2;
-        private System.Windows.Forms.Panel panel19;
-        private System.Windows.Forms.Label lblTotalEnergyIp2;
-        private DevExpress.XtraEditors.SimpleButton btnCalculatorEnergy2;
-        private System.Windows.Forms.Panel panel22;
-        private System.Windows.Forms.DateTimePicker dtpStartTimeIp2;
+        private System.Windows.Forms.DataGridView dgvDataIp1;
+        private System.Windows.Forms.Label lblDataIp1;
     }
 }
 

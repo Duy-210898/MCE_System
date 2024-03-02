@@ -10,6 +10,7 @@ using System.Drawing;
 using OfficeOpenXml;
 using System.Threading;
 using System.Linq;
+using Microsoft.Win32;
 
 namespace Measure_Energy_Consumption
 {
@@ -336,23 +337,38 @@ namespace Measure_Energy_Consumption
             DateTime currentTime = DateTime.Now;
             DateTime startTime = currentTime.AddHours(-1);
 
+            string register;
+             
+            if (cabinet == "Cabinet 1")
+            {
+                register = "Register_6";
+            }
+            else if (cabinet == "Cabinet 2")
+            {
+                register = "Register_16";
+            }
+            else
+            {
+                return;
+            }
+
             // Lấy giá trị của thanh ghi số từ dòng đầu tiên tìm thấy sau startTime
-            float startValueRegister0 = GetStartValue(dataTable, startTime, currentTime, "Register_0");
-            float startValueRegister6 = GetStartValue(dataTable, startTime, currentTime, "Register_6");
+            float startValueRegister1 = GetStartValue(dataTable, startTime, currentTime, "Register_0");
+            float startValueRegister2 = GetStartValue(dataTable, startTime, currentTime, register);
 
             // Lấy giá trị của thanh ghi số hiện tại
             float endValueRegister0 = GetEndValue(dataTable, currentTime, "Register_0");
-            float endValueRegister6 = GetEndValue(dataTable, currentTime, "Register_6");
+            float endValueRegister6 = GetEndValue(dataTable, currentTime, register);
 
             // Làm tròn kết quả về 2 số phần thập phân
-            startValueRegister0 = (float)Math.Round(startValueRegister0, 2);
-            startValueRegister6 = (float)Math.Round(startValueRegister6, 2);
+            startValueRegister1 = (float)Math.Round(startValueRegister1, 2);
+            startValueRegister2 = (float)Math.Round(startValueRegister2, 2);
             endValueRegister0 = (float)Math.Round(endValueRegister0, 2);
             endValueRegister6 = (float)Math.Round(endValueRegister6, 2);
 
             // Tính toán totalEnergy1 và totalEnergy2
-            float totalEnergy1 = (float)Math.Round(endValueRegister0 - startValueRegister0, 2);
-            float totalEnergy2 = (float)Math.Round(endValueRegister6 - startValueRegister6, 2);
+            float totalEnergy1 = (float)Math.Round(endValueRegister0 - startValueRegister1, 2);
+            float totalEnergy2 = (float)Math.Round(endValueRegister6 - startValueRegister2, 2);
 
             // Tạo chuỗi thời gian cho dòng hiện tại
             string timeRange = $"{startTime.ToString("HH:mm")} - {currentTime.ToString("HH:mm")}";
@@ -814,7 +830,8 @@ namespace Measure_Energy_Consumption
                     {
                         if (ConnectToDeltaDevice(selectedIP))
                         {
-                            int[] registerAddresses = { 0, 2, 4, 6, 8, 10 };
+                            int[] registerAddresses = Enumerable.Range(0, 16).Select(x => x * 2).ToArray();
+
                             float[] data = ReadDataFromRegisters(registerAddresses);
                             string cabinet = "Cabinet 2";
 
@@ -852,12 +869,22 @@ namespace Measure_Energy_Consumption
         /// Định dạng dataGridview
         /// </summary>
         /// <param name="dataGridView"></param>
-        private void FormatDataGridView(DataGridView dataGridView)
+        private void FormatDataGridViewCabinet1(DataGridView dataGridView)
         {
             if (dataGridView == null || dataGridView.Columns.Count == 0)
             {
                 return;
             }
+
+            Dictionary<int, string> headerMapping = new Dictionary<int, string>()
+    {
+        { 0, "Điện năng\nMáy 1\n(Kwh)" },
+        { 2, "Điện áp\nMáy 1\n(V)" },
+        { 4, "Dòng điện\nMáy 1\n(A)" },
+        { 6, "Điện năng\nMáy 2\n(Kwh)" },
+        { 8, "Điện áp\nMáy 2\n(V)" },
+        { 10, "Dòng điện\nMáy 2\n(A)" }
+    };
 
             int columnIndex = 0;
 
@@ -867,35 +894,9 @@ namespace Measure_Energy_Consumption
                 {
                     string registerNumber = column.HeaderText.Substring(9);
                     int registerAddress;
-                    if (int.TryParse(registerNumber, out registerAddress))
+                    if (int.TryParse(registerNumber, out registerAddress) && headerMapping.ContainsKey(registerAddress))
                     {
-                        switch (registerAddress)
-                        {
-                            case 0:
-                                column.HeaderText = "Điện năng\nMáy 1\n(Kwh)";
-                                break;
-
-                            case 2:
-                                column.HeaderText = "Điện áp\nMáy 1\n(V)";
-                                break;
-
-                            case 4:
-                                column.HeaderText = "Dòng điện\nMáy 1\n(A)";
-                                break;
-
-                            case 6:
-                                column.HeaderText = "Điện năng\nMáy 2\n(Kwh)";
-                                break;
-
-                            case 8:
-                                column.HeaderText = "Điện áp\nMáy 2\n(V)";
-                                break;
-
-                            case 10:
-                                column.HeaderText = "Dòng điện\nMáy 2\n(A)";
-                                break;
-
-                        }
+                        column.HeaderText = headerMapping[registerAddress];
                     }
                 }
 
@@ -910,6 +911,78 @@ namespace Measure_Energy_Consumption
 
                 if (column.HeaderText == "Thời gian")
                 {
+                    column.Width = 120;
+                }
+
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                columnIndex++;
+            }
+        }
+
+        private void FormatDataGridViewCabinet2(DataGridView dataGridView)
+        {
+            if (dataGridView == null || dataGridView.Columns.Count == 0)
+            {
+                return;
+            }
+
+            Dictionary<int, string> headerMapping = new Dictionary<int, string>()
+    {
+        // Mapping giữa số register và tiêu đề cột
+        { 0, "Tổng điện năng\nMáy 1\n(Kwh)" },
+        { 2, "Điện áp\nPha A\nMáy 1\n(V)" },
+        { 4, "Điện áp\nPha B\nMáy 1\n(V)" },
+        { 6, "Điện áp\nPha C\nMáy 1\n(V)" },
+        { 8, "Dòng điện\nPha A\nMáy 1\n(A)" },
+        { 10, "Dòng điện\nPha B\nMáy 1\n(A)" },
+        { 12, "Điện áp\nPha C\nMáy 1\n(A)" },
+        { 14, "Công suất\nMáy 1\n(Kw)" },
+        { 16, "Tổng điện năng\nMáy 2\n(Kwh)" },
+        { 18, "Điện áp\nPha A\nMáy 2\n(V)" },
+        { 20, "Điện áp\nPha B\nMáy 2\n(V)" },
+        { 22, "Điện áp\nPha C\nMáy 2\n(V)" },
+        { 24, "Dòng điện\nPha A\nMáy 2\n(A)" },
+        { 26, "Dòng điện\nPha B\nMáy 2\n(A)" },
+        { 28, "Điện áp\nPha C\nMáy 2\n(A)" },
+        { 30, "Công suất\nMáy 2\n(Kw)" }
+    };
+
+            int columnIndex = 0;
+            Color[] alternatingColors = { Color.AliceBlue, Color.White };
+            Color[] alternatingColors2 = { Color.White, Color.LightYellow };
+            int colorIndex = 0;
+
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                if (column != null && column.HeaderText.StartsWith("Register_") && column.HeaderText.Length > 9)
+                {
+                    string registerNumber = column.HeaderText.Substring(9);
+                    int registerAddress;
+                    if (int.TryParse(registerNumber, out registerAddress))
+                    {
+                        if (headerMapping.ContainsKey(registerAddress))
+                        {
+                            column.HeaderText = headerMapping[registerAddress];
+                        }
+                    }
+                }
+
+                // Tô màu xen kẽ giữa AliceBlue và LightYellow từ cột 2 đến cột 9
+                if (columnIndex >= 1 && columnIndex <= 8)
+                {
+                    column.DefaultCellStyle.BackColor = alternatingColors[colorIndex % alternatingColors.Length];
+                }
+                // Tô màu xen kẽ giữa Gray và White từ cột 10 đến cột 17
+                else if (columnIndex >= 9 && columnIndex <= 16)
+                {
+                    column.DefaultCellStyle.BackColor = alternatingColors2[colorIndex % alternatingColors2.Length];
+                }
+
+                if (column.HeaderText == "Thời gian")
+                {
                     column.Width = 90;
                 }
 
@@ -918,6 +991,7 @@ namespace Measure_Energy_Consumption
                 column.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                 columnIndex++;
+                colorIndex++;
             }
         }
 
@@ -1001,7 +1075,7 @@ namespace Measure_Energy_Consumption
 
             dgvDataIp1.DataSource = machine1DataTable;
 
-            FormatDataGridView(dgvDataIp1);
+            FormatDataGridViewCabinet1(dgvDataIp1);
 
             dgvDataIp1.FirstDisplayedScrollingRowIndex = dgvDataIp1.Rows.Count - 1;
         }
@@ -1013,62 +1087,63 @@ namespace Measure_Energy_Consumption
         /// <param name="registerAddresses"></param>
         private void UpdateIp2DataTable(float[] data, int[] registerAddresses)
         {
-            // Kiểm tra xem cột Thời gian đã tồn tại trong DataTable chưa
+            // Ensure "Thời gian" column exists
             if (!machine2DataTable.Columns.Contains("Thời gian"))
-            {
-                // Nếu chưa tồn tại, thêm cột mới có tên là "Thời gian" và kiểu dữ liệu là string (định dạng HH:mm:ss)
                 machine2DataTable.Columns.Add("Thời gian", typeof(string));
-            }
 
-            // Thêm các cột từ thanh ghi vào DataTable trước cột thời gian
+            // Add columns from register addresses
             foreach (int address in registerAddresses)
             {
                 string columnName = $"Register_{address}";
-                // Kiểm tra nếu cột chưa tồn tại thì mới thêm mới
                 if (!machine2DataTable.Columns.Contains(columnName))
-                {
                     machine2DataTable.Columns.Add(columnName, typeof(float));
-                }
             }
 
             DataRow row = machine2DataTable.NewRow();
-
-            // Ghi lại thời gian thực vào cột Thời gian
             row["Thời gian"] = DateTime.Now.ToString("HH:mm:ss");
 
-            // Thêm dữ liệu từ các thanh ghi vào các cột tương ứng
             for (int i = 0; i < data.Length; i++)
             {
                 string columnName = $"Register_{registerAddresses[i]}";
-                float roundedValue;
-                switch (registerAddresses[i])
-                {
-                    case 0:
-                    case 6:
-                        roundedValue = (float)Math.Round(data[i], 2);
-                        break;
-                    case 2:
-                    case 8:
-                        roundedValue = (float)Math.Round(data[i], 0);
-                        break;
-                    case 4:
-                    case 10:
-                        roundedValue = (float)Math.Round(data[i], 1);
-                        break;
-                    default:
-                        roundedValue = data[i];
-                        break;
-                }
+                float roundedValue = RoundValueBasedOnAddress(data[i], registerAddresses[i]);
                 row[columnName] = roundedValue;
             }
 
             machine2DataTable.Rows.Add(row);
-
             dgvDataIp2.DataSource = machine2DataTable;
-
-            FormatDataGridView(dgvDataIp2);
-
+            FormatDataGridViewCabinet2(dgvDataIp2);
             dgvDataIp2.FirstDisplayedScrollingRowIndex = dgvDataIp2.Rows.Count - 1;
+        }
+
+        private float RoundValueBasedOnAddress(float value, int address)
+        {
+            switch (address)
+            {
+                case 0:
+                case 16:
+                    return (float)Math.Round(value, 2);
+
+                case 2:
+                case 4:
+                case 6:
+                case 18:
+                case 20:
+                case 22:
+                    return (float)Math.Round(value, 0);
+
+                case 8:
+                case 10:
+                case 12:
+                case 14:
+                case 24:
+                case 26:
+                case 28:
+                case 30:
+                    return (float)Math.Round(value, 1);
+
+                default:
+                    return value;
+            }
         }
 
 
@@ -1241,18 +1316,42 @@ namespace Measure_Energy_Consumption
                         }
                         else
                         {
-                            MessageBox.Show("Không thể đọc dữ liệu từ thanh ghi Modbus.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (!isMessageBoxShown)
+                            {
+                                Thread messageThread = new Thread(() =>
+                                {
+                                    MessageBox.Show("Không thể đọc dữ liệu từ thanh ghi Modbus.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    isMessageBoxShown = true;
+                                });
+                                messageThread.Start();
+                            }
                         }
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Kết nối đã bị đóng hoặc có sự cố.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (!isMessageBoxShown)
+                    {
+                        Thread messageThread = new Thread(() =>
+                        {
+                            MessageBox.Show("Kết nối đã bị đóng hoặc có sự cố.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            isMessageBoxShown = true;
+                        });
+                        messageThread.Start();
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi đọc dữ liệu từ thanh ghi Modbus: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (!isMessageBoxShown)
+                {
+                    Thread messageThread = new Thread(() =>
+                    {
+                        MessageBox.Show("Lỗi khi đọc dữ liệu từ thanh ghi Modbus: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        isMessageBoxShown = true;
+                    });
+                    messageThread.Start();
+                }
             }
 
             return resultData.ToArray();
@@ -1272,6 +1371,7 @@ namespace Measure_Energy_Consumption
                 Label lblTotalEnergy = null;
                 DateTime startTime;
                 DateTime endTime;
+                string totalEnergy2Register;
 
                 if (btn == btnCalculatorEnergy1)
                 {
@@ -1279,6 +1379,7 @@ namespace Measure_Energy_Consumption
                     lblTotalEnergy = lblTotalEnergyIp1;
                     startTime = dtpStartTimeIp1.Value;
                     endTime = dtpEndTimeIp1.Value;
+                    totalEnergy2Register = "Register_6";
                 }
                 else if (btn == btnCalculatorEnergy2)
                 {
@@ -1286,6 +1387,7 @@ namespace Measure_Energy_Consumption
                     lblTotalEnergy = lblTotalEnergyIp2;
                     startTime = dtpStartTimeIp2.Value;
                     endTime = dtpEndTimeIp2.Value;
+                    totalEnergy2Register = "Register_16";
                 }
                 else
                 {
@@ -1293,13 +1395,13 @@ namespace Measure_Energy_Consumption
                 }
 
                 float totalEnergy1 = EnergyCalculator.CalculateTotalEnergy(selectedDataTable, startTime, endTime, "Register_0");
-                float totalEnergy2 = EnergyCalculator.CalculateTotalEnergy(selectedDataTable, startTime, endTime, "Register_6");
+                float totalEnergy2 = EnergyCalculator.CalculateTotalEnergy(selectedDataTable, startTime, endTime, totalEnergy2Register);
 
                 if (totalEnergy1 == -11)
                 {
                     lblTotalEnergy.Text = "Dữ liệu trống";
                 }
-                else if (totalEnergy1 == -12)
+                else if (totalEnergy1 == -12 || totalEnergy2 == -12)
                 {
                     lblTotalEnergy.Text = "Thời gian không hợp lệ";
                     lblTotalEnergy.ForeColor = Color.Red;
@@ -1353,6 +1455,29 @@ namespace Measure_Energy_Consumption
                     previousSelectedItem = selectedItem;
                 }
             }
+        }
+
+        private void xtraTabControl1_Selected(object sender, DevExpress.XtraTab.TabPageEventArgs e)
+        {
+
+        }
+
+        private void lblStatusIp2_TextChanged(object sender, EventArgs e)
+        {
+            if(lblStatusIp2.Text == "Kết nối thành công")
+            {
+                // Lấy thời gian hiện tại với giây được thiết lập thành 00
+                DateTime currentTime = DateTime.Now;
+                DateTime roundedTime = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, currentTime.Hour, currentTime.Minute, 0);
+
+                // Đặt giá trị cho DateTimePicker
+                dtpStartTimeIp2.Value = roundedTime;
+            }
+        }
+
+        private void lblStatusIp1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

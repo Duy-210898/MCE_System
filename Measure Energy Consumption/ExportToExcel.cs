@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading;
+using System.Windows.Ink;
 
 namespace Measure_Energy_Consumption
 {
@@ -117,7 +118,7 @@ namespace Measure_Energy_Consumption
                     worksheet.Cells[2, 3].Value = totalEnergy2;
 
                     // Áp dụng định dạng từ ExcelFormatter
-                    ExcelFormatter.FormatStyle(worksheet);
+                    ExcelFormatter.FormatStyle(worksheet, "Cabinet 1");
                     ExcelFormatter.RoundExcelHourlyColumns(worksheet);
 
                     // Lưu file Excel
@@ -166,7 +167,7 @@ namespace Measure_Energy_Consumption
                         worksheet.Cells[lastRow, 3].Value = totalEnergy2;
 
                         // Áp dụng định dạng từ ExcelFormatter
-                        ExcelFormatter.FormatStyle(worksheet);
+                        ExcelFormatter.FormatStyle(worksheet, cabinet);
                         // Làm tròn số
                         ExcelFormatter.RoundExcelHourlyColumns(worksheet);
 
@@ -203,6 +204,143 @@ namespace Measure_Energy_Consumption
         /// </summary>
         /// <param name="newData"></param>
         /// <param name="cabinet"></param>
+        /// 
+        private static void CreateNewExcelFile(string filePath, string cabinet, float[] newData, bool isCabinet2)
+        {
+            using (ExcelPackage excelPackage = new ExcelPackage())
+            {
+                ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add(cabinet);
+
+                // Đặt tên cho các cột dựa vào giá trị của cabinet
+                List<string> columnNames = GetColumnNamesForCabinet(cabinet);
+
+                // Đặt tiêu đề cho cột
+                for (int i = 0; i < columnNames.Count; i++)
+                {
+                    worksheet.Cells[1, i + 1].Value = columnNames[i];
+                }
+
+                // Đặt dữ liệu mới vào file Excel
+                worksheet.Cells[2, 1].Value = DateTime.Now.ToString("HH:mm:ss");
+                for (int i = 0; i < newData.Length; i++)
+                {
+                    worksheet.Cells[2, i + 2].Value = newData[i];
+                }
+
+                // Áp dụng định dạng từ ExcelFormatter
+                ExcelFormatter.FormatStyle(worksheet, cabinet);
+                ExcelFormatter.RoundExcelColumns(worksheet, cabinet);
+
+                // Lưu file Excel
+                FileInfo excelFile = new FileInfo(filePath);
+                excelPackage.SaveAs(excelFile);
+            }
+        }
+
+
+        private static void HandleFileInUseError(string filePath)
+        {
+            if (!isMessageBoxShown)
+            {
+                Thread messageThread = new Thread(() =>
+                {
+                    DialogResult dialogResult = MessageBox.Show("Không thể cập nhật dữ liệu vào file Excel vì file đang được sử dụng bởi một ứng dụng khác.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        isMessageBoxShown = false;
+                    }
+                    else
+                    {
+                        isMessageBoxShown = true;
+                    }
+                });
+                messageThread.Start();
+
+                isMessageBoxShown = true;
+            }
+        }
+        private static List<string> GetColumnNamesForCabinet(string cabinet)
+        {
+            List<string> columnNames = new List<string>();
+            if (cabinet == "Cabinet 1")
+            {
+                columnNames.AddRange(new string[]
+                {
+            "Thời gian",
+            "Điện năng\n(Kwh)",
+            "Điện áp\n(V)",
+            "Dòng điện\n(A)",
+            "Điện năng\n(Kwh)",
+            "Điện áp\n(V)",
+            "Dòng điện\n(A)"
+                });
+            }
+            else if (cabinet == "Cabinet 2")
+            {
+                columnNames.AddRange(new string[]
+                {
+            "Thời gian",
+            "Tổng điện năng\nMáy 1\n(Kwh)",
+            "Điện áp\nPha A\nMáy 1\n(V)",
+            "Điện áp\nPha B\nMáy 1\n(V)",
+            "Điện áp\nPha C\nMáy 1\n(V)",
+            "Dòng điện\nPha A\nMáy 1\n(A)",
+            "Dòng điện\nPha B\nMáy 1\n(A)",
+            "Điện áp\nPha C\nMáy 1\n(A)",
+            "Công suất\nMáy 1\n(Kw)",
+            "Tổng điện năng\nMáy 2\n(Kwh)",
+            "Điện áp\nPha A\nMáy 2\n(V)",
+            "Điện áp\nPha B\nMáy 2\n(V)",
+            "Điện áp\nPha C\nMáy 2\n(V)",
+            "Dòng điện\nPha A\nMáy 2\n(A)",
+            "Dòng điện\nPha B\nMáy 2\n(A)",
+            "Điện áp\nPha C\nMáy 2\n(A)",
+            "Công suất\nMáy 2\n(Kw)"
+                });
+            }
+            return columnNames;
+        }
+
+        private static void UpdateExistingExcelFile(string filePath, string cabinet, float[] newData)
+        {
+            using (ExcelPackage excelPackage = new ExcelPackage(new FileInfo(filePath)))
+            {
+                ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.FirstOrDefault(sheet => sheet.Name == cabinet);
+
+                if (worksheet == null)
+                {
+                    // Tạo một worksheet mới nếu không tìm thấy
+                    worksheet = excelPackage.Workbook.Worksheets.Add(cabinet);
+
+                    // Đặt tên cho các cột dựa vào giá trị của cabinet
+                    List<string> columnNames = GetColumnNamesForCabinet(cabinet);
+
+                    // Đặt tiêu đề cho cột
+                    for (int i = 0; i < columnNames.Count; i++)
+                    {
+                        worksheet.Cells[1, i + 1].Value = columnNames[i];
+                    }
+                }
+
+                // Tìm dòng cuối cùng đã có dữ liệu
+                int lastRow = worksheet.Dimension?.End.Row + 1 ?? 2;
+
+                // Đặt dữ liệu mới vào file Excel
+                worksheet.Cells[lastRow, 1].Value = DateTime.Now.ToString("HH:mm:ss");
+                for (int i = 0; i < newData.Length; i++)
+                {
+                    worksheet.Cells[lastRow, i + 2].Value = newData[i];
+                }
+
+                // Áp dụng định dạng từ ExcelFormatter
+                ExcelFormatter.FormatStyle(worksheet, "Cabinet 1");
+                ExcelFormatter.RoundExcelColumns(worksheet, cabinet);
+
+                excelPackage.Save();
+            }
+        }
+
         public static void UpdateExcelWithNewData(float[] newData, string cabinet)
         {
             string mceFolderPath = @"D:\MCE Data";
@@ -216,141 +354,75 @@ namespace Measure_Energy_Consumption
             if (string.IsNullOrEmpty(filePath))
             {
                 filePath = Path.Combine(dailyFolderPath, fileNamePattern);
-
-                // Tạo một file Excel mới
-                using (ExcelPackage excelPackage = new ExcelPackage())
+                if (cabinet == "Cabinet 1")
                 {
-                    ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add(cabinet);
-
-                    // Đặt tên cho các cột
-                    List<string> columnNames = new List<string>
-                    {
-                        "Thời gian",
-                        "Điện năng\n(Kwh)",
-                        "Điện áp\n(V)",
-                        "Dòng điện\n(A)",
-                        "Điện năng\n(Kwh)",
-                        "Điện áp\n(V)",
-                        "Dòng điện\n(A)"
-                    };
-
-                    // Đặt tiêu đề cho cột
-                    for (int i = 0; i < columnNames.Count; i++)
-                    {
-                        worksheet.Cells[1, i + 1].Value = columnNames[i];
-                    }
-
-                    // Đặt dữ liệu mới vào file Excel
-                    worksheet.Cells[2, 1].Value = DateTime.Now.ToString("HH:mm:ss");
-                    for (int i = 0; i < newData.Length; i++)
-                    {
-                        worksheet.Cells[2, i + 2].Value = newData[i];
-                    }
-
-                    // Áp dụng định dạng từ ExcelFormatter
-                    ExcelFormatter.FormatStyle(worksheet);
-                    ExcelFormatter.RoundExcelColumns(worksheet);
-
-                    // Lưu file Excel
-                    FileInfo excelFile = new FileInfo(filePath);
-                    excelPackage.SaveAs(excelFile);
+                    CreateNewExcelFile(filePath, cabinet, newData, false);
+                }
+                else if (cabinet == "Cabinet 2")
+                {
+                    CreateNewExcelFile(filePath, cabinet, newData, true);
                 }
             }
             else
             {
                 if (!IsFileLocked(filePath))
                 {
-                    using (ExcelPackage excelPackage = new ExcelPackage(new FileInfo(filePath)))
-                    {
-                        ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.FirstOrDefault(sheet => sheet.Name == cabinet);
-
-                        if (worksheet == null)
-                        {
-                            // Tạo một worksheet mới nếu không tìm thấy
-                            worksheet = excelPackage.Workbook.Worksheets.Add(cabinet);
-
-                            // Đặt tên cho các cột
-                            List<string> columnNames = new List<string>
-                            {
-                                "Thời gian",
-                                "Điện năng\n(Kwh)",
-                                "Điện áp\n(V)",
-                                "Dòng điện\n(A)",
-                                "Điện năng\n(Kwh)",
-                                "Điện áp\n(V)",
-                                "Dòng điện\n(A)"
-                            };
-
-                            // Đặt tiêu đề cho cột
-                            for (int i = 0; i < columnNames.Count; i++)
-                            {
-                                worksheet.Cells[1, i + 1].Value = columnNames[i];
-                            }
-                        }
-
-                        // Tìm dòng cuối cùng đã có dữ liệu
-                        int lastRow = worksheet.Dimension?.End.Row + 1 ?? 2;
-
-                        // Đặt dữ liệu mới vào file Excel
-                        worksheet.Cells[lastRow, 1].Value = DateTime.Now.ToString("HH:mm:ss");
-                        for (int i = 0; i < newData.Length; i++)
-                        {
-                            worksheet.Cells[lastRow, i + 2].Value = newData[i];
-                        }
-
-                        // Áp dụng định dạng từ ExcelFormatter
-                        ExcelFormatter.FormatStyle(worksheet);
-                        ExcelFormatter.RoundExcelColumns(worksheet);
-
-                        excelPackage.Save();
-                    }
+                    UpdateExistingExcelFile(filePath, cabinet, newData);
                 }
                 else
                 {
-                    if (!isMessageBoxShown)
-                    {
-                        Thread messageThread = new Thread(() =>
-                        {
-                            DialogResult dialogResult = MessageBox.Show("Không thể cập nhật dữ liệu vào file Excel vì file đang được sử dụng bởi một ứng dụng khác.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                            if (dialogResult == DialogResult.OK)
-                            {
-                                isMessageBoxShown = false;
-                            }
-                            else
-                            {
-                                isMessageBoxShown = true;
-                            }
-                        });
-                        messageThread.Start();
-
-                        isMessageBoxShown = true;
-                    }
+                    HandleFileInUseError(filePath);
                 }
             }
         }
     }
 
-    public class ExcelFormatter
-    {
+        public class ExcelFormatter
+        {
 
         /// <summary>
         /// Làm tròn số trong sheet Cabinet
         /// </summary>
         /// <param name="worksheet"></param>
-        public static void RoundExcelColumns(ExcelWorksheet worksheet)
+        public static void RoundExcelColumns(ExcelWorksheet worksheet, string cabinet)
         {
-            // Cột 2 và 5: làm tròn về 2 chữ số phần thập phân
-            worksheet.Column(2).Style.Numberformat.Format = "0.00";
-            worksheet.Column(5).Style.Numberformat.Format = "0.00";
+            if(cabinet == "Cabinet 1")
+            {
+                worksheet.Column(2).Style.Numberformat.Format = "0.00";
+                worksheet.Column(5).Style.Numberformat.Format = "0.00";
 
-            // Cột 3 và 7: làm tròn về 1 chữ số phần thập phân
-            worksheet.Column(3).Style.Numberformat.Format = "0";
-            worksheet.Column(6).Style.Numberformat.Format = "0";
+                // Cột 3 và 7: làm tròn về 1 chữ số phần thập phân
+                worksheet.Column(3).Style.Numberformat.Format = "0";
+                worksheet.Column(6).Style.Numberformat.Format = "0";
 
-            // Cột 4 và 8: không làm tròn phần thập phân
-            worksheet.Column(4).Style.Numberformat.Format = "0.0";
-            worksheet.Column(7).Style.Numberformat.Format = "0.0";
+                // Cột 4 và 8: không làm tròn phần thập phân
+                worksheet.Column(4).Style.Numberformat.Format = "0.0";
+                worksheet.Column(7).Style.Numberformat.Format = "0.0";
+            }
+
+            else if(cabinet == "Cabinet 2")
+            {
+                worksheet.Column(2).Style.Numberformat.Format = "0.00";
+                worksheet.Column(10).Style.Numberformat.Format = "0.00";
+
+                // Cột 3 và 6: làm tròn về 1 chữ số phần thập phân
+                worksheet.Column(3).Style.Numberformat.Format = "0";
+                worksheet.Column(5).Style.Numberformat.Format = "0";
+                worksheet.Column(5).Style.Numberformat.Format = "0";
+                worksheet.Column(11).Style.Numberformat.Format = "0";
+                worksheet.Column(12).Style.Numberformat.Format = "0";
+                worksheet.Column(13).Style.Numberformat.Format = "0";
+
+                // Cột 4 và 8: không làm tròn phần thập phân
+                worksheet.Column(6).Style.Numberformat.Format = "0.0";
+                worksheet.Column(7).Style.Numberformat.Format = "0.0";
+                worksheet.Column(8).Style.Numberformat.Format = "0.0";
+                worksheet.Column(9).Style.Numberformat.Format = "0.0";
+                worksheet.Column(14).Style.Numberformat.Format = "0.0";
+                worksheet.Column(15).Style.Numberformat.Format = "0.0";
+                worksheet.Column(16).Style.Numberformat.Format = "0.0";
+                worksheet.Column(17).Style.Numberformat.Format = "0.0";
+            }
         }
 
         /// <summary>
@@ -368,7 +440,7 @@ namespace Measure_Energy_Consumption
         /// Định dạng file excel cơ bản
         /// </summary>
         /// <param name="worksheet"></param>
-        public static void FormatStyle(ExcelWorksheet worksheet)
+        public static void FormatStyle(ExcelWorksheet worksheet, string cabinet)
         {
             // Bật wrap text
             worksheet.Cells[1, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column].Style.WrapText = true;
@@ -384,13 +456,35 @@ namespace Measure_Energy_Consumption
             var border = worksheet.Cells[1, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column].Style.Border;
             border.Top.Style = border.Left.Style = border.Bottom.Style = border.Right.Style = ExcelBorderStyle.Thin;
 
-            // Tô màu xen kẽ từ dòng thứ 3
-            for (int i = 3; i <= worksheet.Dimension.End.Row; i += 2)
+            if (cabinet == "Cabinet 1")
             {
-                using (var range = worksheet.Cells[i, 1, i, worksheet.Dimension.End.Column])
+                // Tô màu xen kẽ từ dòng thứ 3 cho tất cả các cột
+                for (int i = 3; i <= worksheet.Dimension.End.Row; i += 2)
                 {
-                    range.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                    range.Style.Fill.BackgroundColor.SetColor(Color.AliceBlue);
+                    using (var range = worksheet.Cells[i, 1, i, worksheet.Dimension.End.Column])
+                    {
+                        range.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        range.Style.Fill.BackgroundColor.SetColor(Color.AliceBlue);
+                    }
+                }
+            }
+
+            else if(cabinet == "Cabinet 2")
+            {
+                // Tô màu xen kẽ các dòng cho các cột từ 2 đến cột 9 màu AliceBlue và cột 10 đến cột 17 màu LightYellow
+                for (int i = 3; i <= worksheet.Dimension.End.Row; i += 2)
+                {
+                    using (var range = worksheet.Cells[i, 1, i, 9])
+                    {
+                        range.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        range.Style.Fill.BackgroundColor.SetColor(Color.AliceBlue);
+                    }
+
+                    using (var range = worksheet.Cells[i, 10, i, 17])
+                    {
+                        range.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        range.Style.Fill.BackgroundColor.SetColor(Color.LightYellow);
+                    }
                 }
             }
             const int minimumColumnWidth = 15;
