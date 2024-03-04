@@ -49,7 +49,6 @@ namespace Measure_Energy_Consumption
             numTimeRecordIp1.Value = 1;
             numTimeRecordIp2.Value = 1;
 
-            // Khởi tạo và cấu hình NotifyIcon
             InitializeNotifyIcon();
         }
 
@@ -230,12 +229,12 @@ namespace Measure_Energy_Consumption
         /// <param name="e"></param>
         private async void cbxListIp1_Click(object sender, EventArgs e)
         {
-            await UpdateDeltaDevicesComboBoxAsync(cbxListIp1, "10.30.4", "192.168.0", "192.168.1", "192.168.2", "169.254.245");
+            await UpdateDeltaDevicesComboBoxAsync(cbxListIp1, "10.30.4", "192.168.0", "192.168.1", "192.168.2", "192.168.3");
         }
 
         private async void cbxListIp2_Click(object sender, EventArgs e)
         {
-            await UpdateDeltaDevicesComboBoxAsync(cbxListIp2, "10.30.4", "192.168.0", "192.168.1", "192.168.2");
+            await UpdateDeltaDevicesComboBoxAsync(cbxListIp2, "10.30.4", "192.168.0", "192.168.1", "192.168.2", "192.168.3");
         }
 
 
@@ -311,7 +310,6 @@ namespace Measure_Energy_Consumption
             dataTable.Columns.Add("Tiêu thụ - Máy 2\n(Kwh)", typeof(float));
             return dataTable;
         }
-
 
         /// <summary>
         /// Tạo dataTable tủ 2
@@ -638,7 +636,7 @@ namespace Measure_Energy_Consumption
             {
                 Thread errorMessageThread = new Thread(() =>
                 {
-                    MessageBox.Show("Timeout khi kết nối đến thiết bị: " + ex.Message);
+                    MessageBox.Show("Hết thời gian chờ kết nối đến thiết bị: " + ex.Message);
                     statusLabel.ForeColor = Color.Orange;
                     statusLabel.Text = "Kết nối thất bại";
                     isErrorMessageBoxShown = true;
@@ -1120,6 +1118,12 @@ namespace Measure_Energy_Consumption
             switch (address)
             {
                 case 0:
+                case 8:
+                case 10:
+                case 12:
+                case 24:
+                case 26:
+                case 28:
                 case 16:
                     return (float)Math.Round(value, 2);
 
@@ -1131,13 +1135,7 @@ namespace Measure_Energy_Consumption
                 case 22:
                     return (float)Math.Round(value, 0);
 
-                case 8:
-                case 10:
-                case 12:
                 case 14:
-                case 24:
-                case 26:
-                case 28:
                 case 30:
                     return (float)Math.Round(value, 1);
 
@@ -1316,13 +1314,15 @@ namespace Measure_Energy_Consumption
                         }
                         else
                         {
-                            if (!isMessageBoxShown)
+                            if (!isErrorMessageBoxShown)
                             {
+                                isErrorMessageBoxShown = true; 
+
                                 Thread messageThread = new Thread(() =>
                                 {
                                     MessageBox.Show("Không thể đọc dữ liệu từ thanh ghi Modbus.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    isMessageBoxShown = true;
                                 });
+
                                 messageThread.Start();
                             }
                         }
@@ -1330,12 +1330,13 @@ namespace Measure_Energy_Consumption
                 }
                 else
                 {
-                    if (!isMessageBoxShown)
+                    if (!isErrorMessageBoxShown)
                     {
+                        isErrorMessageBoxShown = true;
+
                         Thread messageThread = new Thread(() =>
                         {
                             MessageBox.Show("Kết nối đã bị đóng hoặc có sự cố.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            isMessageBoxShown = true;
                         });
                         messageThread.Start();
                     }
@@ -1343,12 +1344,13 @@ namespace Measure_Energy_Consumption
             }
             catch (Exception ex)
             {
-                if (!isMessageBoxShown)
+                if (!isErrorMessageBoxShown)
                 {
+                    isErrorMessageBoxShown = true; 
+
                     Thread messageThread = new Thread(() =>
                     {
                         MessageBox.Show("Lỗi khi đọc dữ liệu từ thanh ghi Modbus: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        isMessageBoxShown = true;
                     });
                     messageThread.Start();
                 }
@@ -1477,7 +1479,15 @@ namespace Measure_Energy_Consumption
 
         private void lblStatusIp1_TextChanged(object sender, EventArgs e)
         {
+            if (lblStatusIp1.Text == "Kết nối thành công")
+            {
+                // Lấy thời gian hiện tại với giây được thiết lập thành 00
+                DateTime currentTime = DateTime.Now;
+                DateTime roundedTime = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, currentTime.Hour, currentTime.Minute, 0);
 
+                // Đặt giá trị cho DateTimePicker
+                dtpStartTimeIp1.Value = roundedTime;
+            }
         }
     }
 }

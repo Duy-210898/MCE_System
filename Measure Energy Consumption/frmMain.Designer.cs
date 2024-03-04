@@ -32,6 +32,8 @@
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.dgvDataIp1 = new System.Windows.Forms.DataGridView();
+            this.lblDataIp1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel24 = new System.Windows.Forms.Panel();
             this.dgvHourlyIp1 = new System.Windows.Forms.DataGridView();
@@ -82,13 +84,12 @@
             this.panel22 = new System.Windows.Forms.Panel();
             this.dtpStartTimeIp2 = new System.Windows.Forms.DateTimePicker();
             this.btnCalculatorEnergy2 = new DevExpress.XtraEditors.SimpleButton();
-            this.dgvDataIp1 = new System.Windows.Forms.DataGridView();
-            this.lblDataIp1 = new System.Windows.Forms.Label();
             this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDataIp1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel24.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHourlyIp1)).BeginInit();
@@ -118,7 +119,6 @@
             this.panel18.SuspendLayout();
             this.panel19.SuspendLayout();
             this.panel22.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDataIp1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel13
@@ -182,6 +182,30 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(899, 656);
             this.panel6.TabIndex = 10;
+            // 
+            // dgvDataIp1
+            // 
+            this.dgvDataIp1.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.dgvDataIp1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvDataIp1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDataIp1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDataIp1.Location = new System.Drawing.Point(0, 38);
+            this.dgvDataIp1.Name = "dgvDataIp1";
+            this.dgvDataIp1.Size = new System.Drawing.Size(895, 614);
+            this.dgvDataIp1.TabIndex = 1;
+            // 
+            // lblDataIp1
+            // 
+            this.lblDataIp1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblDataIp1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblDataIp1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataIp1.Location = new System.Drawing.Point(0, 0);
+            this.lblDataIp1.Name = "lblDataIp1";
+            this.lblDataIp1.Size = new System.Drawing.Size(895, 38);
+            this.lblDataIp1.TabIndex = 0;
+            this.lblDataIp1.Text = "Cabinet 1";
+            this.lblDataIp1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblDataIp1.TextChanged += new System.EventHandler(this.lblDataIp1_TextChanged);
             // 
             // panel1
             // 
@@ -805,30 +829,6 @@
             this.btnCalculatorEnergy2.Text = "Tính điện";
             this.btnCalculatorEnergy2.Click += new System.EventHandler(this.btnCalculatorEnergy_Click);
             // 
-            // dgvDataIp1
-            // 
-            this.dgvDataIp1.BackgroundColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.dgvDataIp1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvDataIp1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDataIp1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDataIp1.Location = new System.Drawing.Point(0, 38);
-            this.dgvDataIp1.Name = "dgvDataIp1";
-            this.dgvDataIp1.Size = new System.Drawing.Size(895, 614);
-            this.dgvDataIp1.TabIndex = 1;
-            // 
-            // lblDataIp1
-            // 
-            this.lblDataIp1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblDataIp1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblDataIp1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataIp1.Location = new System.Drawing.Point(0, 0);
-            this.lblDataIp1.Name = "lblDataIp1";
-            this.lblDataIp1.Size = new System.Drawing.Size(895, 38);
-            this.lblDataIp1.TabIndex = 0;
-            this.lblDataIp1.Text = "Cabinet 1";
-            this.lblDataIp1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblDataIp1.TextChanged += new System.EventHandler(this.lblDataIp1_TextChanged);
-            // 
             // frmMain
             // 
             this.Appearance.BackColor = System.Drawing.Color.LightSteelBlue;
@@ -849,6 +849,7 @@
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDataIp1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel24.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHourlyIp1)).EndInit();
@@ -878,7 +879,6 @@
             this.panel18.ResumeLayout(false);
             this.panel19.ResumeLayout(false);
             this.panel22.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDataIp1)).EndInit();
             this.ResumeLayout(false);
 
         }

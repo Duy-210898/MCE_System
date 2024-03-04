@@ -118,7 +118,7 @@ namespace Measure_Energy_Consumption
                     worksheet.Cells[2, 3].Value = totalEnergy2;
 
                     // Áp dụng định dạng từ ExcelFormatter
-                    ExcelFormatter.FormatStyle(worksheet, "Cabinet 1");
+                    ExcelFormatter.FormatHourlySheet(worksheet);
                     ExcelFormatter.RoundExcelHourlyColumns(worksheet);
 
                     // Lưu file Excel
@@ -167,7 +167,7 @@ namespace Measure_Energy_Consumption
                         worksheet.Cells[lastRow, 3].Value = totalEnergy2;
 
                         // Áp dụng định dạng từ ExcelFormatter
-                        ExcelFormatter.FormatStyle(worksheet, cabinet);
+                        ExcelFormatter.FormatHourlySheet(worksheet);
                         // Làm tròn số
                         ExcelFormatter.RoundExcelHourlyColumns(worksheet);
 
@@ -228,7 +228,7 @@ namespace Measure_Energy_Consumption
                 }
 
                 // Áp dụng định dạng từ ExcelFormatter
-                ExcelFormatter.FormatStyle(worksheet, cabinet);
+                ExcelFormatter.FormatCabinetSheet(worksheet, cabinet);
                 ExcelFormatter.RoundExcelColumns(worksheet, cabinet);
 
                 // Lưu file Excel
@@ -334,7 +334,7 @@ namespace Measure_Energy_Consumption
                 }
 
                 // Áp dụng định dạng từ ExcelFormatter
-                ExcelFormatter.FormatStyle(worksheet, "Cabinet 1");
+                ExcelFormatter.FormatCabinetSheet(worksheet, cabinet);
                 ExcelFormatter.RoundExcelColumns(worksheet, cabinet);
 
                 excelPackage.Save();
@@ -390,20 +390,24 @@ namespace Measure_Energy_Consumption
             {
                 worksheet.Column(2).Style.Numberformat.Format = "0.00";
                 worksheet.Column(5).Style.Numberformat.Format = "0.00";
+                worksheet.Column(4).Style.Numberformat.Format = "0.00";
+                worksheet.Column(7).Style.Numberformat.Format = "0.00";
 
                 // Cột 3 và 7: làm tròn về 1 chữ số phần thập phân
                 worksheet.Column(3).Style.Numberformat.Format = "0";
                 worksheet.Column(6).Style.Numberformat.Format = "0";
-
-                // Cột 4 và 8: không làm tròn phần thập phân
-                worksheet.Column(4).Style.Numberformat.Format = "0.0";
-                worksheet.Column(7).Style.Numberformat.Format = "0.0";
             }
 
             else if(cabinet == "Cabinet 2")
             {
                 worksheet.Column(2).Style.Numberformat.Format = "0.00";
+                worksheet.Column(6).Style.Numberformat.Format = "0.00";
+                worksheet.Column(7).Style.Numberformat.Format = "0.00";
+                worksheet.Column(8).Style.Numberformat.Format = "0.00";
                 worksheet.Column(10).Style.Numberformat.Format = "0.00";
+                worksheet.Column(14).Style.Numberformat.Format = "0.00";
+                worksheet.Column(15).Style.Numberformat.Format = "0.00";
+                worksheet.Column(16).Style.Numberformat.Format = "0.00";
 
                 // Cột 3 và 6: làm tròn về 1 chữ số phần thập phân
                 worksheet.Column(3).Style.Numberformat.Format = "0";
@@ -414,13 +418,7 @@ namespace Measure_Energy_Consumption
                 worksheet.Column(13).Style.Numberformat.Format = "0";
 
                 // Cột 4 và 8: không làm tròn phần thập phân
-                worksheet.Column(6).Style.Numberformat.Format = "0.0";
-                worksheet.Column(7).Style.Numberformat.Format = "0.0";
-                worksheet.Column(8).Style.Numberformat.Format = "0.0";
                 worksheet.Column(9).Style.Numberformat.Format = "0.0";
-                worksheet.Column(14).Style.Numberformat.Format = "0.0";
-                worksheet.Column(15).Style.Numberformat.Format = "0.0";
-                worksheet.Column(16).Style.Numberformat.Format = "0.0";
                 worksheet.Column(17).Style.Numberformat.Format = "0.0";
             }
         }
@@ -440,7 +438,7 @@ namespace Measure_Energy_Consumption
         /// Định dạng file excel cơ bản
         /// </summary>
         /// <param name="worksheet"></param>
-        public static void FormatStyle(ExcelWorksheet worksheet, string cabinet)
+        public static void FormatCabinetSheet(ExcelWorksheet worksheet, string cabinet)
         {
             // Bật wrap text
             worksheet.Cells[1, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column].Style.WrapText = true;
@@ -487,6 +485,38 @@ namespace Measure_Energy_Consumption
                     }
                 }
             }
+            const int minimumColumnWidth = 15;
+            for (int col = 1; col <= worksheet.Dimension.End.Column; col++)
+            {
+                worksheet.Column(col).Width = Math.Max(minimumColumnWidth, worksheet.Column(col).Width);
+            }
+        }
+        public static void FormatHourlySheet(ExcelWorksheet worksheet)
+        {
+            // Bật wrap text
+            worksheet.Cells[1, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column].Style.WrapText = true;
+
+            // Tắt gridline
+            worksheet.View.ShowGridLines = false;
+
+            // Căn giữa toàn bộ dữ liệu
+            worksheet.Cells[1, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            worksheet.Cells[1, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column].Style.VerticalAlignment = ExcelVerticalAlignment.Center;
+
+            // Kẻ viền cho các ô
+            var border = worksheet.Cells[1, 1, worksheet.Dimension.End.Row, worksheet.Dimension.End.Column].Style.Border;
+            border.Top.Style = border.Left.Style = border.Bottom.Style = border.Right.Style = ExcelBorderStyle.Thin;
+
+            // Tô màu xen kẽ từ dòng thứ 3 cho tất cả các cột
+            for (int i = 3; i <= worksheet.Dimension.End.Row; i += 2)
+            {
+                using (var range = worksheet.Cells[i, 1, i, worksheet.Dimension.End.Column])
+                {
+                    range.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    range.Style.Fill.BackgroundColor.SetColor(Color.AliceBlue);
+                }
+            }
+
             const int minimumColumnWidth = 15;
             for (int col = 1; col <= worksheet.Dimension.End.Column; col++)
             {
